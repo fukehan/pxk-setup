@@ -29,12 +29,12 @@ def parseIP(data):
     ethArry = []
     for devs in data:
         lines = devs.split('\n')
+        print lines[0]
         if 'RUNNING' in lines[0]:
-            devname = lines[0].split()[0]
-            macaddr = lines[0].split()[-1]
-            #ipaddr  = lines[1].split()[1].split(':')[1]
-            #dic[devname] = [ipaddr, macaddr]
-            ethArry.append(devname.strip(':'))
+            if 'inet 192.168.100' in lines[1]:
+                devname = lines[0].split()[0]
+                macaddr = lines[0].split()[-1]
+                ethArry.append(devname.strip(':'))
     return ethArry
 
 def getPxkStatus():
